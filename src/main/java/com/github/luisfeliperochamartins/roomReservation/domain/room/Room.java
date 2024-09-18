@@ -22,6 +22,7 @@ public class Room {
 			inverseJoinColumns = @JoinColumn(name = "equipament_id")
 	)
 	private List<Equipament> equipaments;
+
 	@OneToMany(mappedBy = "room")
 	private List<Reservation> reservations;
 

@@ -1,6 +1,6 @@
 package com.github.luisfeliperochamartins.roomReservation.domain.reservation;
 
-import com.github.luisfeliperochamartins.roomReservation.domain.employee.Employee;
+import com.github.luisfeliperochamartins.roomReservation.domain.user.User;
 import com.github.luisfeliperochamartins.roomReservation.domain.room.Room;
 import jakarta.persistence.*;
 
@@ -25,16 +25,16 @@ public class Reservation {
 			joinColumns = @JoinColumn(name = "reservation_id"),
 			inverseJoinColumns = @JoinColumn(name = "employee_id")
 	)
-	private List<Employee> employees;
+	private List<User> users;
 	private LocalDateTime startDate;
 	private LocalDateTime endDate;
 
 	public Reservation() {}
 
-	public Reservation(Long id, Room room, List<Employee> employees, LocalDateTime startDate, LocalDateTime endDate) {
+	public Reservation(Long id, Room room, List<User> users, LocalDateTime startDate, LocalDateTime endDate) {
 		this.id = id;
 		this.room = room;
-		this.employees = employees;
+		this.users = users;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
@@ -55,12 +55,12 @@ public class Reservation {
 		this.room = room;
 	}
 
-	public List<Employee> getEmployees() {
-		return employees;
+	public List<User> getEmployees() {
+		return users;
 	}
 
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
+	public void setEmployees(List<User> users) {
+		this.users = users;
 	}
 
 	public LocalDateTime getStartDate() {
@@ -84,7 +84,7 @@ public class Reservation {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("id = ").append(id);
 		sb.append(", room = ").append(room);
-		sb.append(", employees = ").append(employees);
+		sb.append(", employees = ").append(users);
 		sb.append(", startDate = ").append(startDate);
 		sb.append(", endDate = ").append(endDate);
 		return sb.toString();

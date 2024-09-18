@@ -9,13 +9,20 @@ public class Equipament {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
+	private String name;
+
+	@Column(unique = true)
+	private String email;
 
 	public Equipament() {}
 
 	public Equipament(Long id, String nome) {
 		this.id = id;
-		this.nome = nome;
+		this.name = nome;
+	}
+
+	public Equipament(String name) {
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -26,19 +33,27 @@ public class Equipament {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String nome) {
+		this.name = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("id = ").append(id);
-		sb.append(", nome = ").append(nome);
+		sb.append(", nome = ").append(name);
 		return sb.toString();
 	}
 }

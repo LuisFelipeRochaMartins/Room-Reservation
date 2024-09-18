@@ -1,6 +1,6 @@
 package com.github.luisfeliperochamartins.roomReservation.domain.department;
 
-import com.github.luisfeliperochamartins.roomReservation.domain.employee.Employee;
+import com.github.luisfeliperochamartins.roomReservation.domain.user.User;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,15 +12,21 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(unique = true)
 	private String name;
 
 	@OneToMany(mappedBy = "department")
-	private List<Employee> employees;
+	private List<User> users;
 
 	public Department() {}
 
 	public Department(Long id, String name) {
 		this.id = id;
+		this.name = name;
+	}
+
+	public Department(String name) {
 		this.name = name;
 	}
 
