@@ -20,7 +20,6 @@ public class SecurityConfig {
 	private final SecurityFilter filter;
 
 	@Autowired
-
 	public SecurityConfig(SecurityFilter filter) {
 		this.filter = filter;
 	}

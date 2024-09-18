@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +27,8 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/login")
-	public ResponseEntity login(@RequestBody @Valid UserRecord user) {
+	public ResponseEntity<?> login(@RequestBody @Valid UserRecord user) {
 		var authToken = new UsernamePasswordAuthenticationToken(user.username(), user.password());
-		System.out.println(manager);
 		var auth = manager.authenticate(authToken);
 
 		var token = service.generateToken((User) auth.getPrincipal());

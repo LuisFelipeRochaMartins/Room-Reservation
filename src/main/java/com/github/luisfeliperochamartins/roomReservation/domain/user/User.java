@@ -41,20 +41,15 @@ public class User implements UserDetails {
 
 	public User() {}
 
-	public User(Long id, String username, String password, Boolean status, Role role, Department department, List<Reservation> reservations) {
-		this.id = id;
+	public User(String username, String password, Role role) {
 		this.username = username;
 		this.password = password;
-		this.status = status;
-		this.role = role;
-		this.department = department;
-		this.reservations = reservations;
+		this.role = Role.FUNCIONARIO;
 	}
 
-	public User(UserRecord user) {
-		this.username = user.username();
-		this.password = user.password();
-		this.role = Role.FUNCIONARIO;
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public Long getId() {
@@ -70,9 +65,18 @@ public class User implements UserDetails {
 		return this.username;
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
 	@Override
 	public String getPassword() {
 		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
@@ -80,13 +84,6 @@ public class User implements UserDetails {
 		return Collections.singleton(new SimpleGrantedAuthority(role.name()));
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 	public Department getDepartment() {
 		return department;
@@ -110,6 +107,26 @@ public class User implements UserDetails {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 	@Override
