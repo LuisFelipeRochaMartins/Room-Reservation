@@ -89,4 +89,22 @@ public class Reservation {
 		sb.append(", endDate = ").append(endDate);
 		return sb.toString();
 	}
+
+	public void update(Room room, List<User> users, LocalDateTime startAt, LocalDateTime endAt) {
+		if (room != null) {
+			this.room = room;
+		}
+
+		if (users != null) {
+			this.users = users;
+		}
+
+		if (startAt != null) {
+			this.startDate = startAt;
+		}
+
+		if (endAt != null) {
+			this.endDate = startDate;
+		}
+	}
 }

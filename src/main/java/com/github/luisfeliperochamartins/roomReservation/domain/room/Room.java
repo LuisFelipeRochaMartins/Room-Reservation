@@ -28,8 +28,7 @@ public class Room {
 
 	public Room() {}
 
-	public Room(Long id, String name, Integer capacity, List<Equipament> equipaments, List<Reservation> reservations) {
-		this.id = id;
+	public Room(String name, Integer capacity, List<Equipament> equipaments, List<Reservation> reservations) {
 		this.name = name;
 		this.capacity = capacity;
 		this.equipaments = equipaments;
