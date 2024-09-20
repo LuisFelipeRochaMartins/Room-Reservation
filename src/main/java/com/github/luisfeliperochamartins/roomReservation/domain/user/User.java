@@ -44,7 +44,7 @@ public class User implements UserDetails {
 	public User(String username, String password, Role role) {
 		this.username = username;
 		this.password = password;
-		this.role = Role.FUNCIONARIO;
+		this.role = role;
 	}
 
 	public User(String username, String password) {
@@ -129,15 +129,31 @@ public class User implements UserDetails {
 		return true;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public void switchRole() {
+		if (role.name().equals("ADMIN")) {
+			this.setRole(Role.FUNCIONARIO);
+			return;
+		}
+		this.setRole(Role.ADMIN);
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("id = ").append(id);
 		sb.append(", username = ").append(username);
 		sb.append(", password = ").append(password);
-		sb.append(", status = ").append(status);
-		sb.append(", department = ").append(department);
-		sb.append(", reservations = ").append(reservations);
+		sb.append(", role = ").append(role);
 		return sb.toString();
 	}
+
+
 }

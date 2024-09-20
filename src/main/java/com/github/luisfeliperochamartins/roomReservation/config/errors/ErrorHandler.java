@@ -1,6 +1,7 @@
 package com.github.luisfeliperochamartins.roomReservation.config.errors;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,6 +16,11 @@ public class ErrorHandler {
 
 	@ExceptionHandler(EntityNotFoundException.class)
 	public ResponseEntity<?> notFound(EntityNotFoundException ex) {
+		return ResponseEntity.badRequest().body(ex.getCause().getMessage());
+	}
+
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<?> andleDataIntegrityViolationException(DataIntegrityViolationException ex) {
 		return ResponseEntity.badRequest().body(ex.getCause().getMessage());
 	}
 }

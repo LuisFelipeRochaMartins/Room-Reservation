@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class UserSeed {
 
 	@Bean
-	CommandLineRunner userSeed(UserRepository userRepository, PasswordEncoder encoder) {
+	CommandLineRunner seed(UserRepository userRepository, PasswordEncoder encoder) {
 		return args -> {
 			var user = new User("admin@admin.com", encoder.encode("1234"), Role.ADMIN);
 			userRepository.save(user);

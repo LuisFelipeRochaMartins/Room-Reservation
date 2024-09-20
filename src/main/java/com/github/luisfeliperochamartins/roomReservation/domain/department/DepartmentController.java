@@ -22,14 +22,14 @@ public class DepartmentController {
 	public ResponseEntity<Department> insert(@RequestBody @Valid DepartmentRecord record, UriComponentsBuilder builder) {
 		var department = repository.save(new Department(record.name()));
 
-		var uri = builder.path("/api/admin/deparment").buildAndExpand(department.getId()).toUri();
+		var uri = builder.path("/admin/department").buildAndExpand(department.getId()).toUri();
 
 		return ResponseEntity.created(uri).body(department);
 	}
 
 	@PutMapping(path = "/{id}")
 	@Transactional
-	public ResponseEntity udpate(@PathVariable Long id, @RequestBody DepartmentRecord record) {
+	public ResponseEntity update(@PathVariable Long id, @RequestBody DepartmentRecord record) {
 		var department = repository.findById(id);
 
 		if (department.isPresent()) {

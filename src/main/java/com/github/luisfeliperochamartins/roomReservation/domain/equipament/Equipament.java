@@ -11,9 +11,6 @@ public class Equipament {
 	private Long id;
 	private String name;
 
-	@Column(unique = true)
-	private String email;
-
 	public Equipament() {}
 
 	public Equipament(Long id, String nome) {
@@ -39,14 +36,6 @@ public class Equipament {
 
 	public void setName(String nome) {
 		this.name = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	@Override
